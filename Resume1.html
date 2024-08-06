@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume/CV Builder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link rel="stylesheet" href="Resume9.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .nav {
+            background-color: #001f3f;
+            padding: 10px;
+        }
+
+        .navbtn {
+            background-color: transparent;
+            border: none;
+            color: white;
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        .resume {
+            background-color: #ffffff;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            overflow: hidden; /* Ensure content doesn't overflow */
+        }
+
+        .head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .name {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .contacts .content {
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        .symbol {
+            margin-left: 10px;
+        }
+
+        .line {
+            border-top: 2px solid #001f3f;
+            margin: 20px 0;
+        }
+
+        .mainbody {
+            display: flex;
+        }
+
+        .leftside,
+        .rightside {
+            width: 50%;
+            padding: 10px;
+        }
+
+        .title {
+            font-weight: bold;
+            color: #001f3f;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            margin-top: 10px;
+        }
+
+        .border {
+            border-left: 2px solid #001f3f;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <button id="cmd" onclick="printpdf()" class="navbtn"><i class="fas fa-download"></i></button>
+        <form>
+            <input type="hidden" id="custinfo" name="custinfo">
+            <button class="navbtn"><i class="fas fa-save"></i></button>
+        </form>
+        <button class="navbtn" onclick="window.location.href='/'"><i class="fas fa-home"></i></button>
+    </div>
+
+    <div class="resume" id="resume">
+        <section id="print">
+            <div class="head">
+                <div class="main">
+                    <span class="name" contenteditable="true">YOUR</span> <span contenteditable="true">NAME</span>
+                    <div class="post" contenteditable="true">YOUR JOB PROFILE</div>
+                </div>
+                <div class="contacts">
+                    <span contenteditable="true" class="content">Phone Number</span><span class="symbol"> <i class="fas fa-phone"></i></span><br>
+                    <span contenteditable="true" class="content">Email</span><span class="symbol"> <i class="fas fa-envelope"></i></span><br>
+                    <span contenteditable="true" class="content">LinkedIn</span><span class="symbol"> <i class="fab fa-linkedin"></i></span><br>
+                    <span contenteditable="true" class="content">Address</span><span class="symbol"> <i class="fas fa-map-marker-alt"></i></span>
+                </div>
+            </div>
+
+            <div class="line"></div>
+            <div class="mainbody">
+                <div class="leftside">
+                    <span class="title">MY SKILLS</span><br><br>
+                    <div>
+                        <div class="skill">
+                            <span><input type="checkbox" class="input-checkbox"></span><span><i class="fas fa-chevron-circle-right"></i></span>
+                            <span contenteditable="true">Write your skill here</span>
+                        </div>
+                        <div id="skills"></div>
+                        <button id="skilladd" type="button" class="btn btn-primary" onclick="addSkill()"><i class="fas fa-plus-circle"></i> Skill</button>
+                        <button id="skillrem" type="button" class="btn btn-secondary" onclick="remSkill(event)"><i class="fas fa-minus-circle"></i> Skill</button>
+                    </div>
+                    <br><br>
+                    <span class="title">LANGUAGES</span><br><br>
+                    <div>
+                        <div class="language">
+                            <span><input type="checkbox" class="input-checkbox"></span>
+                            <span contenteditable="true">LANGNAME</span> - <span contenteditable="true">level you know</span>
+                        </div>
+                        <div id="languages"></div>
+                        <button id="langadd" type="button" class="btn btn-primary" onclick="addLang()"><i class="fas fa-plus-circle"></i> Language</button>
+                        <button id="langrem" type="button" class="btn btn-secondary" onclick="remLang(event)"><i class="fas fa-minus-circle"></i> Language</button>
+                    </div>
+                    <br><br>
+                    <span class="title">ACHIEVEMENTS</span><br><br>
+                    <div>
+                        <div class="achieve">
+                            <span><input type="checkbox" class="input-checkbox"></span>
+                            <span contenteditable="true">Write your achievement</span>
+                        </div>
+                        <div id="achievement"></div>
+                        <button id="achadd" type="button" class="btn btn-primary" onclick="addAch()"><i class="fas fa-plus-circle"></i> Achievement</button>
+                        <button id="achrem" type="button" class="btn btn-secondary" onclick="remAch(event)"><i class="fas fa-minus-circle"></i> Achievement</button>
+                    </div>
+                    <br><br>
+                    <span class="title">INTERESTS</span><br><br>
+                    <div>
+                        <div class="achieve">
+                            <span><input type="checkbox" class="input-checkbox"></span>
+                            <span contenteditable="true">Write interest</span>
+                        </div>
+                        <div id="interest"></div>
+                        <button id="Intadd" type="button" class="btn btn-primary" onclick="addInt()"><i class="fas fa-plus-circle"></i> Interest</button>
+                        <button id="Intrem" type="button" class="btn btn-secondary" onclick="remInt(event)"><i class="fas fa-minus-circle"></i> Interest</button>
+                    </div>
+                </div>
+
+                <div class="border"></div>
+
+                <div class="rightside">
+                    <span class="title">PROFILE</span><br><br>
+                    <div contenteditable="true">
+                        Here you can write basic information about your career like your forte, something about yourself that you want your interviewer to know. Try to keep it brief and only provide necessary information. Do not include information which is already written in your resume in some other section.
+                    </div>
+                    <br><br>
+                    <span class="title">EDUCATION</span><br><br>
+                    <div id="education">
+                        <div class="edublock">
+                            <span><input type="checkbox" class="input-checkbox"></span>
+                            <span class="education-head" contenteditable="true">YOUR DEGREE</span>
+                            <div><span contenteditable="true">Institute name</span> - <span contenteditable="true">Passing Year</span></div>
+                        </div>
+                    </div>
+                    <button id="eduadd" type="button" class="btn btn-primary" onclick="addEdu()"><i class="fas fa-plus-circle"></i> Education</button>
+                    <button id="edurem" type="button" class="btn btn-secondary" onclick="remEdu(event)"><i class="fas fa-minus-circle"></i> Education</button>
+
+                    <br><br>
+                    <span class="title">EXPERIENCE</span><br><br>
+                    <div id="experience">
+                        <div class="expblock">
+                            <span><input type="checkbox" class="input-checkbox"></span>
+                            <span class="experience-head" contenteditable="true">Job Title</span>
+                            <div><span contenteditable="true">Company</span> - <span contenteditable="true">Duration</span></div>
+                            <div contenteditable="true">Write about your work, key responsibilities, skills achieved during your working period.</div>
+                        </div>
+                    </div>
+                    <button id="expadd" type="button" class="btn btn-primary" onclick="addExp()"><i class="fas fa-plus-circle"></i> Experience</button>
+                    <button id="exprem" type="button" class="btn btn-secondary" onclick="remExp(event)"><i class="fas fa-minus-circle"></i> Experience</button>
+
+                    <br><br>
+                    <span class="title">PROJECTS</span><br><br>
+                    <div id="projects">
+                        <div class="projblock">
+                            <span><input type="checkbox" class="input-checkbox"></span>
+                            <span class="project-head" contenteditable="true">Project Title</span>
+                            <div contenteditable="true">Brief description about the project.</div>
+                        </div>
+                    </div>
+                    <button id="projadd" type="button" class="btn btn-primary" onclick="addProj()"><i class="fas fa-plus-circle"></i> Project</button>
+                    <button id="projrem" type="button" class="btn btn-secondary" onclick="remProj(event)"><i class="fas fa-minus-circle"></i> Project</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <script>
+        function printpdf() {
+            var element = document.getElementById('resume');
+            html2pdf().from(element).save('resume.pdf');
+        }
+
+        function addSkill() {
+            let skillDiv = document.createElement('div');
+            skillDiv.className = 'skill';
+            skillDiv.innerHTML = `<span><input type="checkbox" class="input-checkbox"></span><span><i class="fas fa-chevron-circle-right"></i></span><span contenteditable="true">Write your skill here</span>`;
+            document.getElementById('skills').appendChild(skillDiv);
+        }
+
+        function remSkill(event) {
+            let skills = document.getElementById('skills');
+            if (skills.childElementCount > 0) {
+                skills.removeChild(skills.lastChild);
+            }
+        }
+
+        function addLang() {
+            let langDiv = document.createElement('div');
+            langDiv.className = 'language';
+            langDiv.innerHTML = `<span><input type="checkbox" class="input-checkbox"></span><span contenteditable="true">LANGNAME</span> - <span contenteditable="true">level you know</span>`;
+            document.getElementById('languages').appendChild(langDiv);
+        }
+
+        function remLang(event) {
+            let languages = document.getElementById('languages');
+            if (languages.childElementCount > 0) {
+                languages.removeChild(languages.lastChild);
+            }
+        }
+
+        function addAch() {
+            let achDiv = document.createElement('div');
+            achDiv.className = 'achieve';
+            achDiv.innerHTML = `<span><input type="checkbox" class="input-checkbox"></span><span contenteditable="true">Write your achievement</span>`;
+            document.getElementById('achievement').appendChild(achDiv);
+        }
+
+        function remAch(event) {
+            let achievements = document.getElementById('achievement');
+            if (achievements.childElementCount > 0) {
+                achievements.removeChild(achievements.lastChild);
+            }
+        }
+
+        function addInt() {
+            let intDiv = document.createElement('div');
+            intDiv.className = 'achieve';
+            intDiv.innerHTML = `<span><input type="checkbox" class="input-checkbox"></span><span contenteditable="true">Write interest</span>`;
+            document.getElementById('interest').appendChild(intDiv);
+        }
+
+        function remInt(event) {
+            let interests = document.getElementById('interest');
+            if (interests.childElementCount > 0) {
+                interests.removeChild(interests.lastChild);
+            }
+        }
+
+        function addEdu() {
+            let eduDiv = document.createElement('div');
+            eduDiv.className = 'edublock';
+            eduDiv.innerHTML = `<span><input type="checkbox" class="input-checkbox"></span><span class="education-head" contenteditable="true">YOUR DEGREE</span><div><span contenteditable="true">Institute name</span> - <span contenteditable="true">Passing Year</span></div>`;
+            document.getElementById('education').appendChild(eduDiv);
+        }
+
+        function remEdu(event) {
+            let education = document.getElementById('education');
+            if (education.childElementCount > 0) {
+                education.removeChild(education.lastChild);
+            }
+        }
+
+        function addExp() {
+            let expDiv = document.createElement('div');
+            expDiv.className = 'expblock';
+            expDiv.innerHTML = `<span><input type="checkbox" class="input-checkbox"></span><span class="experience-head" contenteditable="true">Job Title</span><div><span contenteditable="true">Company</span> - <span contenteditable="true">Duration</span></div><div contenteditable="true">Write about your work, key responsibilities, skills achieved during your working period.</div>`;
+            document.getElementById('experience').appendChild(expDiv);
+        }
+
+        function remExp(event) {
+            let experience = document.getElementById('experience');
+            if (experience.childElementCount > 0) {
+                experience.removeChild(experience.lastChild);
+            }
+        }
+
+        function addProj() {
+            let projDiv = document.createElement('div');
+            projDiv.className = 'projblock';
+            projDiv.innerHTML = `<span><input type="checkbox" class="input-checkbox"></span><span class="project-head" contenteditable="true">Project Title</span><div contenteditable="true">Brief description about the project.</div>`;
+            document.getElementById('projects').appendChild(projDiv);
+        }
+
+        function remProj(event) {
+            let projects = document.getElementById('projects');
+            if (projects.childElementCount > 0) {
+                projects.removeChild(projects.lastChild);
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ansar Resume Builder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="Resume2.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Ansar Resume Builder</h2>
+        <form id="resumeForm" enctype="multipart/form-data">
+            <label for="photo">Upload Photo:</label>
+            <input type="file" id="photo" accept="image/*" required>
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+            <label for="title">Title:</label>
+            <input type="text" id="title" required>
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            <label for="linkedin">LinkedIn:</label>
+            <input type="text" id="linkedin">
+            <label for="address">Address:</label>
+            <input type="text" id="address" required>
+            <label for="about">About Me / Summary:</label>
+            <textarea id="about" required></textarea>
+            <label for="careerObjective">Career Objective:</label>
+            <div id="careerObjectiveContainer">
+                <textarea class="careerObjective-entry" placeholder="Career Objective Description" required></textarea>
+            </div>
+            <button type="button" onclick="addCareerObjective()">Add Career Objective</button>
+            <label for="academic">Academic Background:</label>
+            <div id="academicContainer">
+                <div class="academic-entry">
+                    <input type="text" class="academic-start" placeholder="Start Year" required>
+                    <input type="text" class="academic-end" placeholder="End Year" required>
+                    <input type="text" class="academic-course" placeholder="Course" required>
+                </div>
+            </div>
+            <button type="button" onclick="addAcademic()">Add Academic Background</button>
+            <label for="experience">Experience:</label>
+            <div id="experienceContainer">
+                <textarea class="experience-entry" placeholder="Experience Description" required></textarea>
+            </div>
+            <button type="button" onclick="addExperience()">Add Experience</button>
+            <label for="skills">Skills (Format: Skill1: level, Skill2: level):</label>
+            <div id="skillsContainer">
+                <input type="text" class="skill-entry" placeholder="Skill: level" required>
+            </div>
+            <button type="button" onclick="addSkill()">Add Skill</button>
+            <label for="languages">Languages:</label>
+            <div id="languagesContainer">
+                <input type="text" class="language-entry" placeholder="Language" required>
+            </div>
+            <button type="button" onclick="addLanguage()">Add Language</button>
+            <label for="projects">Projects:</label>
+            <div id="projectsContainer">
+                <textarea class="project-entry" placeholder="Project Description" required></textarea>
+            </div>
+            <button type="button" onclick="addProject()">Add Project</button>
+            <label for="internships">Internships:</label>
+            <div id="internshipsContainer">
+                <div class="internship-entry">
+                    <input type="text" class="internship-year" placeholder="Year" required>
+                    <textarea class="internship-description" placeholder="Internship Description" required></textarea>
+                </div>
+            </div>
+            <button type="button" onclick="addInternship()">Add Internship</button>
+            <label for="hobbies">Hobbies:</label>
+            <div id="hobbiesContainer">
+                <input type="text" class="hobby-entry" placeholder="Hobby" required>
+            </div>
+            <button type="button" onclick="addHobby()">Add Hobby</button>
+            <button type="button" onclick="generateResume()">Generate Resume</button>
+        </form>
+    </div>
+    <div class="resume-container" id="resumeContainer">
+        <div class="left_Side">
+            <div class="profileText">
+                <div class="imgBx" id="profileImage"></div>
+                <h2 id="displayName"></h2>
+                <span id="displayTitle"></span>
+            </div>
+            <div class="about">
+                <h2 class="title">About Me</h2>
+                <p id="displayAbout"></p>
+            </div>
+            <div class="contactInfo">
+                <h3 class="title">Contact Info</h3>
+                <ul>
+                    <li><span class="icon"><i class="fa fa-map-marker"></i></span><span class="text" id="displayAddress"></span></li>
+                    <li><span class="icon"><i class="fa fa-phone"></i></span><span class="text" id="displayPhone"></span></li>
+                    <li><span class="icon"><i class="fa fa-envelope"></i></span><span class="text" id="displayEmail"></span></li>
+                    <li><span class="icon"><i class="fa fa-linkedin"></i></span><span class="text" id="displayLinkedIn"></span></li>
+                </ul>
+            </div>
+            <div class="contactInfo skills">
+                <h3 class="title">Skills</h3>
+                <ul id="displaySkills"></ul>
+            </div>
+            <div class="contactInfo languages">
+                <h3 class="title">Languages</h3>
+                <ul id="displayLanguages"></ul>
+            </div>
+            <div class="contactInfo hobbies">
+                <h3 class="title">Hobbies</h3>
+                <ul id="displayHobbies"></ul>
+            </div>
+        </div>
+        <div class="middle_border"></div>
+        <div class="right_Side">
+            <div class="about">
+                <h2 class="title2">Career Objective</h2>
+                <ul id="displayCareerObjective"></ul>
+            </div>
+            <div class="about">
+                <h2 class="title2">Academic Background</h2>
+                <ul id="displayAcademic"></ul>
+            </div>
+            <div class="about">
+                <h2 class="title2">Experience</h2>
+                <ul id="displayExperience"></ul>
+            </div>
+            <div class="about">
+                <h2 class="title2">Internships</h2>
+                <ul id="displayInternships"></ul>
+            </div>
+            <div class="about projects">
+                <h2 class="title2">Projects</h2>
+                <ul id="displayProjects"></ul>
+            </div>
+        </div>
+    </div>
+    <button class="download-btn" onclick="downloadResume()">Download Resume as PDF</button>
+    <footer>&copy; 2024 Ansar Hansi</footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <script src="Resume2.js"></script>
+</body>
+</html>

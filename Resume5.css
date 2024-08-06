@@ -1,0 +1,130 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+}
+
+.resume {
+    display: flex;
+    margin: 50px auto;
+    width: 800px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.resume_left {
+    width: 250px;
+    background: #272822;
+    color: #fff;
+    text-align: center;
+}
+
+.resume_profile img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 30px auto;
+}
+
+.resume_content {
+    padding: 20px;
+}
+
+.resume_item {
+    margin-bottom: 30px;
+}
+
+.title {
+    margin-bottom: 10px;
+}
+
+.title p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.resume_item ul {
+    padding: 0;
+    list-style: none;
+}
+
+.resume_item ul li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.resume_item ul li .icon {
+    width: 30px;
+    font-size: 18px;
+}
+
+.resume_item ul li .data {
+    flex: 1;
+}
+
+.resume_item ul li .data p {
+    margin: 0;
+}
+
+.resume_item ul li .skill_progress {
+    background: #555;
+    height: 5px;
+    margin: 0 10px;
+    flex: 1;
+}
+
+.resume_item ul li .skill_progress span {
+    display: block;
+    height: 100%;
+    background: #fff;
+}
+
+.resume_item ul li .skill_per {
+    width: 50px;
+    text-align: right;
+}
+
+.resume_right {
+    flex: 1;
+    padding: 20px;
+}
+
+.resume_item.resume_about {
+    margin-bottom: 20px;
+}
+
+.input-form {
+    width: 800px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-form h2 {
+    margin-top: 0;
+}
+
+.input-form label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.input-form input, .input-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+}
+
+.input-form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #272822;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
